@@ -10,7 +10,7 @@ document.getElementById('submit-button').addEventListener('click', function() {
             // Send the token to your server for verification
             console.log('reCAPTCHA token:', token);
 
-            // Example: Send token to server using AJAX with error handling
+            // Example: Send token to server using AJAX
             var xhr = new XMLHttpRequest();
             xhr.open('POST', '/verify-recaptcha', true);
             xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
@@ -18,18 +18,10 @@ document.getElementById('submit-button').addEventListener('click', function() {
                 if (xhr.status === 200) {
                     console.log('reCAPTCHA verification successful');
                 } else {
-                    console.error('reCAPTCHA verification failed:', xhr.responseText);
-                    // Handle the error, e.g., display a message to the user
+                    console.error('reCAPTCHA verification failed');
                 }
             };
-            xhr.onerror = function() {
-                console.error('Error sending reCAPTCHA token to server');
-                // Handle the error, e.g., display a message to the user
-            };
             xhr.send('token=' + token);
-        }).catch(function(error) {
-            console.error('reCAPTCHA error:', error);
-            // Handle the error, e.g., display a message to the user
         });
     });
 });
